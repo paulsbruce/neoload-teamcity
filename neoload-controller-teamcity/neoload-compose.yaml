@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+   TC_agent_NL-8675309-01:
+     container_name: TC_agent_NL-8675309-01
+     image: paulsbruce/neoload-controller-teamcity
+     restart: always
+     volumes:
+       - ./agents/NL-8675309-01/conf:/opt/teamcity/buildAgent/conf
+       - ./agents/NL-8675309-01/logs:/opt/teamcity/buildAgent/logs
+     environment:
+       SERVER_URL: $SERVER_URL
+     networks:
+       - teamcity
+   TC_agent_NL-8675309-02:
+     container_name: TC_agent_NL-8675309-02
+     image: paulsbruce/neoload-controller-teamcity
+     restart: always
+     volumes:
+       - ./agents/NL-8675309-02/conf:/opt/teamcity/buildAgent/conf
+       - ./agents/NL-8675309-02/logs:/opt/teamcity/buildAgent/logs
+     environment:
+       SERVER_URL: $SERVER_URL
+     networks:
+       - teamcity
+
+
+networks:
+  teamcity:
+    driver: bridge
